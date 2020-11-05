@@ -6,11 +6,15 @@ parser = argparse.ArgumentParser(description='Run, retrieve, or execute the desi
 parser.add_argument('operation', type=str, help='The operation you would like to execute. (md5, factorial, keyval...)')
 parser.add_argument('load', help='The object you would like to be run against the operation')
 parser.add_argument('-r', '--request_type', metavar='', type=str, help='Type of request to be past to API when using the \'keyval\' operation. (post, put, get, delete) default is \'get\' ')
+parser.add_argument('-d', '--destination', metavar='', help='specify an external url')
 args = parser.parse_args()
 
 def get_basic(operation, load):
     load = str(load)
-    url = 'http://localhost:5000/{}/{}'.format(operation, load)
+    if args.destination is None:
+        url = 'http://localhost:5000/{}/{}'.format(operation, load)
+    else:
+        url = 'http://{}/{}/{}'.format(destination, operation, load)
     r = requests.get(url)
     return r.text
 
