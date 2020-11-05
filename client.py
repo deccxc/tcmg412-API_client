@@ -18,24 +18,28 @@ def get_basic(operation, load):
     r = requests.get(url)
     return r.text
 
-def crud_requests(operation, load):    
+def crud_requests(operation, load):
+    if args.destination is None:
+        dest = 'localhost:5000' 
+    else:
+        dest = args.destination
     if args.request_type == 'post':
         pair = load.split(':')
         key = str(pair[0])
         val = str(pair[1])
-        url = 'http://localhost:5000/{}'.format(operation)
+        url = 'http://{}/{}'.format(dest, operation)
         r = requests.post(url, json={'key':key, 'value':val})        
     elif args.request_type == 'put':
         pair = load.split(':')
         key = str(pair[0])
         val = str(pair[1])
-        url = 'http://localhost:5000/{}'.format(operation)
+        url = 'http://{}/{}'.format(dest, operation)
         r = requests.put(url, json={'key':key, 'value':val})
     elif args.request_type == 'delete':
-        url = 'http://localhost:5000/{}/{}'.format(operation, load)
+        url = 'http://{}/{}/{}'.format(dest, operation, load)
         r = requests.delete(url)
     elif args.request_type == 'get':
-        url = 'http://localhost:5000/{}/{}'.format(operation, load)
+        url = 'http://{}/{}/{}'.format(dest, operation, load)
         r = requests.get(url)    
     return r.text
     
