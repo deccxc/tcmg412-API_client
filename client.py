@@ -14,7 +14,7 @@ def get_basic(operation, load):
     if args.destination is None:
         url = 'http://localhost:5000/{}/{}'.format(operation, load)
     else:
-        url = 'http://{}/{}/{}'.format(destination, operation, load)
+        url = 'http://{}/{}/{}'.format(args.destination, operation, load)
     r = requests.get(url)
     return r.text
 
