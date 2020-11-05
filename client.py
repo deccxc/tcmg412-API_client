@@ -14,15 +14,27 @@ def get_basic(operation, load):
     r = requests.get(url)
     return r.text
 
-def crud_requests(operation, load):
+def crud_requests(operation, load):    
     if args.request_type == 'post':
         pair = load.split(':')
         key = str(pair[0])
         val = str(pair[1])
         url = 'http://localhost:5000/{}'.format(operation)
-        r = requests.post(url, json={'key':key, 'value':val})
-        return r.text
-
+        r = requests.post(url, json={'key':key, 'value':val})        
+    elif args.request_type == 'put':
+        pair = load.split(':')
+        key = str(pair[0])
+        val = str(pair[1])
+        url = 'http://localhost:5000/{}'.format(operation)
+        r = requests.put(url, json={'key':key, 'value':val})
+    elif args.request_type == 'delete':
+        url = 'http://localhost:5000/{}/{}'.format(operation, load)
+        r = requests.delete(url)
+    elif args.request_type == 'get':
+        url = 'http://localhost:5000/{}/{}'.format(operation, load)
+        r = requests.get(url)    
+    return r.text
+    
 if __name__ == '__main__':
     if args.request_type is None:
         print(get_basic(args.operation, args.load))
