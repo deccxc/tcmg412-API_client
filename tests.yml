@@ -1,0 +1,245 @@
+- url:          /md5/test
+  method:       GET  
+  result:       098f6bcd4621d373cade4e832627b4f6
+  status_codes: 
+    - 200
+
+- url:          /md5/hello%20world
+  method:       GET
+  result:       5eb63bbbe01eeed093cb22bb8f5acdc3   
+  status_codes: 
+    - 200
+
+- url:          /md5
+  method:       GET
+  result:        
+  status_codes:
+    - 400
+    - 404
+    - 405
+
+- url:          /factorial
+  method:       GET
+  result:        
+  status_codes:
+    - 400
+    - 404
+    - 405
+
+- url:          /factorial/4
+  method:       GET
+  result:       24  
+  status_codes:
+    - 200
+
+- url:          /factorial/5
+  method:       GET
+  result:       120  
+  status_codes:
+    - 200
+
+- url:          /factorial/test
+  method:       GET
+  result:          
+  status_codes:
+    - 400
+    - 404
+    - 405
+
+- url:          /factorial/0
+  method:       GET
+  result:       1   
+  status_codes:
+    - 200
+
+- url:          /fibonacci/8
+  method:       GET
+  result:       [0,1,1,2,3,5,8]   
+  status_codes:
+    - 200
+
+- url:          /fibonacci/35
+  method:       GET
+  result:       [0,1,1,2,3,5,8,13,21,34] 
+  status_codes:
+    - 200
+
+- url:          /fibonacci/1
+  method:       GET
+  result:       [0,1,1]
+  status_codes:
+    - 200
+
+- url:          /fibonacci/test
+  method:       GET
+  result:         
+  status_codes:
+    - 400
+    - 404
+    - 405
+
+- url:          /is-prime/1
+  method:       GET
+  result:       False 
+  status_codes:
+    - 200
+
+- url:          /is-prime/2
+  method:       GET
+  result:       True
+  status_codes:
+    - 200
+
+- url:          /is-prime/5
+  method:       GET
+  result:       True 
+  status_codes:
+    - 200
+
+- url:          /is-prime/6
+  method:       GET
+  result:       False 
+  status_codes:
+    - 200
+
+- url:          /is-prime/15
+  method:       GET
+  result:       False 
+  status_codes:
+    - 200
+  
+- url:          /is-prime/37
+  method:       GET
+  result:       True
+  status_codes:
+    - 200
+
+- url:          /is-prime/one
+  method:       GET
+  result:         
+  status_codes:
+    - 400
+    - 404
+    - 405
+
+- url:          /slack-alert/test
+  method:       GET
+  result:       True   
+  status_codes:
+    - 200
+
+- url:          /slack-alert/This%20is%20a%20longer%20string.%0D%0AIt%20even%20includes%20a%20newline%E2%80%A6
+  method:       GET
+  result:       True
+  status_codes:
+    - 200
+
+- url:          /keyval/test1
+  method:       GET
+  result:       False
+  error:        True
+  kv_key:       test1
+  kv_val:       
+  status_codes:
+    - 400
+    - 404
+    - 405
+
+- url:          /keyval
+  method:       POST
+  result:       True
+  error:        
+  kv_key:       test1
+  kv_val:       foobar  
+  status_codes:
+    - 200
+
+- url:          /keyval/test1
+  method:       GET
+  result:       True
+  error:        
+  kv_key:       test1
+  kv_val:       foobar
+  status_codes:
+    - 200
+
+- url:          /keyval
+  method:       POST
+  result:       False
+  error:        True
+  kv_key:       test1
+  kv_val:       foobaz  
+  status_codes:
+    - 400
+    - 404
+    - 405
+    - 409
+
+- url:          /keyval
+  method:       POST
+  result:       True
+  error:        
+  kv_key:       test2
+  kv_val:       42  
+  status_codes:
+    - 200
+
+- url:          /keyval
+  method:       PUT
+  result:       True
+  error:        
+  kv_key:       test1
+  kv_val:       'lorem ipsum' 
+  status_codes:
+    - 200
+
+- url:          /keyval/test1
+  method:       GET
+  result:       True
+  error:        
+  kv_key:       test1
+  kv_val:       'lorem ipsum'
+  status_codes:
+    - 200
+
+- url:          /keyval
+  method:       PUT
+  result:       False
+  error:        True
+  kv_key:       test3
+  kv_val:       84
+  status_codes:
+    - 400
+    - 404
+    - 405
+    - 409
+
+- url:          /keyval/test2
+  method:       DELETE
+  result:       True
+  error:        
+  kv_key:       test2
+  kv_val:       42
+  status_codes:
+    - 200
+
+- url:          /keyval/test1
+  method:       DELETE
+  result:       True
+  error:        
+  kv_key:       test1
+  kv_val:       'lorem ipsum'
+  status_codes:
+    - 200
+
+- url:          /keyval/test3
+  method:       DELETE
+  result:       False
+  error:        True
+  kv_key:       test3
+  kv_val:       
+  status_codes:
+    - 400
+    - 404
+    - 405
+    - 409
