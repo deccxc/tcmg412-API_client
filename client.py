@@ -16,7 +16,8 @@ def get_basic(operation, load):
     else:
         url = 'http://{}/{}/{}'.format(args.destination, operation, load)
     r = requests.get(url)
-    return r.text
+    payload = r.json()
+    return payload['output']
 
 def crud_requests(operation, load):
     if args.destination is None:
