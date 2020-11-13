@@ -50,6 +50,8 @@ if __name__ == '__main__':
             if resultedCode not in actualCode:
                 print(item)
                 print('This request does not return the expected result')
+            else:
+                print('All tests passed)
             
                 
             
