@@ -48,9 +48,9 @@ if __name__ == '__main__':
                 resultedCode = crud_requests(item['url'], item['method'], item['kv_key'], item['kv_val'])
 
             if resultedCode not in actualCode:
-                print(item)
-                print('This request does not return the expected result')
-            
+                print(item['url'], '---> Failed')
+            else: 
+                print(item['url'], '---> Passed')
                 
             
 
