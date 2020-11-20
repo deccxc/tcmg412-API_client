@@ -14,7 +14,7 @@ def get_basic(operation):
     else:
         url = 'http://{}/{}'.format(args.destination, operation)
     r = requests.get(url)
-    return r.status_code
+    return [r.status_code, r.json[output]]
 
 def crud_requests(operation, request_type, kv_key, kv_val):
     if args.destination is None:
@@ -40,15 +40,20 @@ if __name__ == '__main__':
         testObject = yaml.full_load(tests)
 
         for item in testObject:      
-            actualCode = item['status_codes']      
+            actualCode = item['status_codes']
+            results = item['result']
 
             if item['method'] == 'GET':
-                resultedCode = get_basic(item['url'])
+                resultedCode = get_basic(item['url'][0])
+                results_code = get_basic(item['url'][1])
             else: 
                 resultedCode = crud_requests(item['url'], item['method'], item['kv_key'], item['kv_val'])
 
             if resultedCode not in actualCode:
-                print(item['url'], '---> Failed')
+                if results_code is not in result:
+                    print(item['url'], '---> Failed')
+                else:
+                    print('Status code correct, but results incorrect')
             else: 
                 print(item['url'], '---> Passed')
                 
